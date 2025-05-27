@@ -9,7 +9,7 @@
         - Configure divisions in sales settings
     ''',
     'category': 'Sales',
-    'author': 'Developer',
+    'author': 'oki',
     'website': '',
     'license': 'LGPL-3',
     'depends': [

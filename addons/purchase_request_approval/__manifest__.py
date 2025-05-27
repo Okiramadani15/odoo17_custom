@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Purchase Request Approval',
+    'name': 'Purchase Request Approval by oki',
     'version': '1.0',
     'summary': 'Multi-level approval for purchase requests',
     'description': '''
@@ -10,7 +10,7 @@
         - Configurable approval hierarchy
     ''',
     'category': 'Purchase',
-    'author': 'Developer',
+    'author': 'oki',
     'website': '',
     'license': 'LGPL-3',
     'depends': [
