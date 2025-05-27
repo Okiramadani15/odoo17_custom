@@ -1,0 +1,36 @@
+version: '3'
+services:
+  web:
+    image: odoo:17.0
+    platform: linux/amd64
+    pull_policy: if_not_present
+    depends_on:
+      - db
+    ports:   
+      - "8069:8069"
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./config:/etc/odoo
+      - odoo-web-data:/var/lib/odoo
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+    restart: always
+    command: -- --dev=all --db-filter=^.*$$
+
+  db:
+    image: postgres:15
+    platform: linux/amd64
+    pull_policy: if_not_present
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_business_division_user,business.division.user,model_business_division,okiaddons.group_division_user,1,0,0,0
+access_business_division_manager,business.division.manager,model_business_division,okiaddons.group_division_manager,1,1,1,1
+access_res_partner_division_user,res.partner.division.user,model_res_partner_division,okiaddons.group_division_user,1,0,0,0
+access_res_partner_division_manager,res.partner.division.manager,model_res_partner_division,okiaddons.group_division_manager,1,1,1,1
+access_stock_inventory_report_user,stock.inventory.report.user,model_stock_inventory_report,stock.group_stock_user,1,0,0,0
+access_stock_inventory_report_wizard_user,stock.inventory.report.wizard.user,model_stock_inventory_report_wizard,stock.group_stock_user,1,1,1,1
+access_stock_inventory_report_line_user,stock.inventory.report.line.user,model_stock_inventory_report_line,stock.group_stock_user,1,1,1,1
+access_warning_wizard_user,warning.wizard.user,model_warning_wizard,sales_team.group_sale_salesman,1,1,1,1

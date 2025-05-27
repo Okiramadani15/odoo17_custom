@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Division Form View -->
+    <record id="view_division_form" model="ir.ui.view">
+        <field name="name">business.division.form</field>
+        <field name="model">business.division</field>
+        <field name="arch" type="xml">
+            <form string="Division">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Division Tree View -->
+    <record id="view_division_tree" model="ir.ui.view">
+        <field name="name">business.division.tree</field>
+        <field name="model">business.division</field>
+        <field name="arch" type="xml">
+            <tree string="Divisions">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Division Action -->
+    <record id="action_division" model="ir.actions.act_window">
+        <field name="name">Divisions</field>
+        <field name="res_model">business.division</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Division Menu - Under Sales Configuration -->
+    <menuitem id="menu_division"
+              name="Divisions"
+              parent="sale.menu_sale_config"
+              action="action_division"
+              sequence="5"/>
+</odoo>

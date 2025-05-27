@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Business Divisions -->
+        <record id="division_sqa" model="business.division">
+            <field name="name">SanQua</field>
+            <field name="code">SQA</field>
+        </record>
+        
+        <record id="division_gln" model="business.division">
+            <field name="name">Galon</field>
+            <field name="code">GLN</field>
+        </record>
+        
+        <record id="division_btv" model="business.division">
+            <field name="name">Batavia</field>
+            <field name="code">BTV</field>
+        </record> 
+        
+        <record id="division_bvg" model="business.division">
+            <field name="name">Beverage</field>
+            <field name="code">BVG</field>
+        </record>
+    </data>
+</odoo>

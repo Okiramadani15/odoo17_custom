@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Sale Order Form View -->
+    <record id="view_order_form_inherit_division" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.division</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="division_id" options="{'no_create': True}" widget="selection"/>
+            </field>
+            <field name="payment_term_id" position="after">
+                <field name="pickup_method"/>
+                <field name="expiration_date"/>
+                <field name="is_credit_limit_exceeded" invisible="1"/>
+                <field name="has_overdue_invoices" invisible="1"/>
+            </field>
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-danger" role="alert" attrs="{'invisible': [('is_credit_limit_exceeded', '=', False)]}">
+                    <strong>Warning!</strong> This customer has exceeded their credit limit for this division.
+                </div>
+                <div class="alert alert-warning" role="alert" attrs="{'invisible': [('has_overdue_invoices', '=', False)]}">
+                    <strong>Warning!</strong> This customer has overdue invoices.
+                </div>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Add Division filter to Sales Order search view -->
+    <record id="view_sales_order_filter_inherit_division" model="ir.ui.view">
+        <field name="name">sale.order.list.select.inherit.division</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="division_id"/>
+                <filter string="Division" name="division" domain="[]" context="{'group_by':'division_id'}"/>
+            </field>
+        </field>
+    </record>
+    
+    <!-- Add Division column to Sales Order tree view -->
+    <record id="view_order_tree_inherit_division" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit.division</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="division_id"/>
+            </field>
+        </field>
+    </record>
+    
+    <!-- Warning Wizard Form View -->
+    <record id="view_warning_wizard_form" model="ir.ui.view">
+        <field name="name">warning.wizard.form</field>
+        <field name="model">warning.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Warning">
+                <field name="message" readonly="1"/>
+                <field name="sale_order_id" invisible="1"/>
+                <footer>
+                    <button name="action_confirm_anyway" string="Confirm Anyway" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

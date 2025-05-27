@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Product Template Form View -->
+    <record id="view_product_template_form_inherit_division" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.division</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="division_id" options="{'no_create': True}" widget="selection"/>
+                <field name="take_in_plant_discount"/>
+            </field>
+        </field>
+    </record>
+    
+    <!-- Add Division filter to Product search view -->
+    <record id="view_product_template_search_inherit_division" model="ir.ui.view">
+        <field name="name">product.template.search.inherit.division</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="division_id"/>
+                <filter string="Division" name="groupby_division" domain="[]" context="{'group_by': 'division_id'}"/>
+            </field>
+        </field>
+    </record>
+    
+    <!-- Add Division column to Product tree view -->
+    <record id="view_product_template_tree_inherit_division" model="ir.ui.view">
+        <field name="name">product.template.tree.inherit.division</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="default_code" position="after">
+                <field name="division_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

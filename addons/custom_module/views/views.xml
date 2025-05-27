@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom Model Form View -->
+    <record id="view_custom_model_form" model="ir.ui.view">
+        <field name="name">custom.model.form</field>
+        <field name="model">custom.model</field>
+        <field name="arch" type="xml">
+            <form string="okiaddons">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Custom Model Tree View -->
+    <record id="view_custom_model_tree" model="ir.ui.view">
+        <field name="name">custom.model.tree</field>
+        <field name="model">custom.model</field>
+        <field name="arch" type="xml">
+            <tree string="okiaddons">
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Custom Model Action -->
+    <record id="action_custom_model" model="ir.actions.act_window">
+        <field name="name">okiaddons</field>
+        <field name="res_model">custom.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Custom Model Menu -->
+    <menuitem id="menu_custom_root" name="Custom" sequence="10"/>
+    <menuitem id="menu_custom_model" name="Custom Models" parent="menu_custom_root" action="action_custom_model" sequence="1"/>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Partner Division Form View -->
+    <record id="view_partner_division_form" model="ir.ui.view">
+        <field name="name">res.partner.division.form</field>
+        <field name="model">res.partner.division</field>
+        <field name="arch" type="xml">
+            <form string="Partner Division">
+                <sheet>
+                    <group>
+                        <field name="division_id"/>
+                        <field name="pricelist_id"/>
+                        <field name="salesperson_id"/>
+                        <field name="credit_limit"/>
+                        <field name="credit_used"/>
+                        <field name="credit_available"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Partner Division Tree View -->
+    <record id="view_partner_division_tree" model="ir.ui.view">
+        <field name="name">res.partner.division.tree</field>
+        <field name="model">res.partner.division</field>
+        <field name="arch" type="xml">
+            <tree string="Partner Divisions">
+                <field name="division_id"/>
+                <field name="pricelist_id"/>
+                <field name="salesperson_id"/>
+                <field name="credit_limit"/>
+                <field name="credit_used"/>
+                <field name="credit_available"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Inherit Partner Form View -->
+    <record id="view_partner_form_inherit_division" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.division</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Divisions" name="divisions">
+                    <field name="division_ids">
+                        <tree editable="bottom">
+                            <field name="division_id"/>
+                            <field name="pricelist_id"/>
+                            <field name="salesperson_id"/>
+                            <field name="credit_limit"/>
+                            <field name="credit_used"/>
+                            <field name="credit_available"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+    
+    <!-- Add Division filter to Partner search view -->
+    <record id="view_res_partner_filter_inherit_division" model="ir.ui.view">
+        <field name="name">res.partner.select.inherit.division</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="division_ids" string="Division" filter_domain="[('division_ids.division_id', 'ilike', self)]"/>
+                <filter string="Has Divisions" name="has_divisions" domain="[('division_ids', '!=', False)]"/>
+            </field>
+        </field>
+    </record>
+</odoo>
